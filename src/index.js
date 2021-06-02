@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom"
 
 
 ReactDOM.render(
-  <BrowserRouter basename='/book-finder'>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
         <App />
     </BrowserRouter>,
   document.getElementById('root')
