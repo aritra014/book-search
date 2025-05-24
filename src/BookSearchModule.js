@@ -1,11 +1,16 @@
 import React, { useState } from "react";  
 import axios from 'axios';  
 import logo from './logo1.png';
-import { Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import CardGroup from 'react-bootstrap/CardGroup';
+
 import StarRatings from 'react-star-ratings';
 import './App.css';
 import './responsive.css';
 import MadeWithLove from 'react-made-with-love';
+import { Form, Button } from 'react-bootstrap';
 
 
 function BookSearchModule() {  
@@ -29,64 +34,99 @@ function BookSearchModule() {
                 setData(data.data.items);  
             })  
     }  
-    return (  
-        <form onSubmit={handleSubmit}>  
-             < header className="App-header"> 
+    return ( 
+   <>
 
-    <div>
-                
-              <img src={logo} alt="logo" /> Online Book Search App
+ <header className="App-header">
+  <div>
+    <img src={logo} alt="logo" /> Online Book Search App
+  </div>
 
+  <div className="col-10 mt">
+    <Form onSubmit={handleSubmit}>
+      <Form.Group className="mb-3" controlId="searchInput">
+        <Form.Control
+          type="text"
+          size="lg"
+          placeholder="Search using Book Name, ISBN, author, keywords"
+          onChange={handleChange}
+        />
+      </Form.Group>
+
+      <Button type="submit" variant="primary" size="lg">
+        Search
+      </Button>
+    </Form>
+  </div>
+</header>
+<div className="container my-4">
+  <div className="row g-4 justify-content-center">
+    {items.map((book, index) => (
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3" key={index}>
+        <Card className="h-100 shadow"> {/* ✅ Shadow added */}
+          {/* Image wrapper with fixed square and cropping */}
+          <div className="p-3 d-flex justify-content-center">
+            <div
+              style={{
+                width: '200px',
+                height: '200px',
+                overflow: 'hidden',
+                borderRadius: '0.5rem',
+              }}
+            >
+              <Card.Img
+                variant="top"
+                src={
+                  book.volumeInfo.imageLinks
+                    ? book.volumeInfo.imageLinks.thumbnail
+                    : ''
+                }
+                alt={book.volumeInfo.title}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+            </div>
+          </div>
+
+          <Card.Body>
+            <Card.Subtitle>{book.volumeInfo.title}</Card.Subtitle>
+          </Card.Body>
+
+          <Card.Footer>
+            <div className="d-flex flex-column gap-2 w-100">
+              {/* ✅ Star Ratings full width and centered */}
+              <div className="w-100 d-flex justify-content-center">
+                <StarRatings
+                  rating={book.volumeInfo.averageRating || 0}
+                  starRatedColor="yellow"
+                  numberOfStars={5}
+                  name="rating"
+                  starDimension="18px"
+                />
               </div>
-            
-          
-                       <div className="col-10 mt"> 
-                        <input  onChange={handleChange} className="mb form-control form-control-lg" type="text" placeholder="Search using Book Name,ISBN,author,keywords" aria-label=".form-control-lg example" />
 
-                   
-                    <div  >  
-                        <input type="submit" value="Search" className="btn btn-primary btn-lg" />  
-                    </div>  
-
-                    </div>
-                
-            </ header> 
-
-          
-            <div className="container">  
-                <div className="row">  
-                    {items.map(book => ( 
-                        
-                        <div className="col-2">  
-                            <Card style={{  'margin': '15px' }} >  
-  
-                            <Card.Img variant="top" src={book.volumeInfo.imageLinks !== undefined ? book.volumeInfo.imageLinks.thumbnail : ''} alt={book.title} />                                  <Card.Body>  
-                            <Card.Subtitle >{book.volumeInfo.title}</Card.Subtitle >
-
-                          
-                                     
-                                </Card.Body>  
-                            </Card>
-                            < StarRatings
-          rating={book.volumeInfo.averageRating}
-          starRatedColor="yellow"
-          numberOfStars={5}
-          name='rating'
-          starDimension="18px"
-
-        />  
-        <div className="mt"> <a target="_blank" href= {book.volumeInfo.previewLink} className="btn btn-outline-info">Preview</a> </div>
-                        </div> 
-                  
-                    ))}
-
-                                    
-                
-                </div>  
-            </div>  
+              {/* Preview Button */}
+              <a
+                href={book.volumeInfo.previewLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline-primary btn-sm w-100"
+              >
+                See This Book
+              </a>
+            </div>
+          </Card.Footer>
+        </Card>
+      </div>
+    ))}
+  </div>
+</div>
 
 
-        </form>  
+</>
 
         
   
