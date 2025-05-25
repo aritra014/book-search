@@ -10,7 +10,7 @@ import StarRatings from 'react-star-ratings';
 import './App.css';
 import './responsive.css';
 import MadeWithLove from 'react-made-with-love';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button,InputGroup  } from 'react-bootstrap';
 
 
 function BookSearchModule() {  
@@ -42,22 +42,22 @@ function BookSearchModule() {
     <img src={logo} alt="logo" /> Online Book Search App
   </div>
 
-  <div className="col-10 mt">
-    <Form onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="searchInput">
+<div className="col-10 mt">
+  <Form onSubmit={handleSubmit}>
+    <Form.Group className="mb-3" controlId="searchInput">
+      <InputGroup size="lg">
         <Form.Control
           type="text"
-          size="lg"
           placeholder="Search using Book Name, ISBN, author, keywords"
           onChange={handleChange}
         />
-      </Form.Group>
-
-      <Button type="submit" variant="primary" size="lg">
-        Search
-      </Button>
-    </Form>
-  </div>
+        <Button type="submit" variant="primary">
+          Search
+        </Button>
+      </InputGroup>
+    </Form.Group>
+  </Form>
+</div>
 </header>
 <div className="container my-4">
   <div className="row g-4 justify-content-center">
