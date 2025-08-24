@@ -15,21 +15,14 @@ function App() {
       
       <BookSearchModule></BookSearchModule>
 
-      <div className="fixed-bottom">  
-               
-                <Card body  color="light" className="text-center">
-                    <MadeWithLove
-  by="Aritra"
-  emoji
-/>
-</Card >
-                    
-              
-        </div>
-
-
+<div className="fixed-bottom">
+  <Card body color="light" className="footer-card">
+    <p className="footer-text m-0">
+      "Every design begins with a story ✨" — Created by @ Aritra Das
+    </p>
+  </Card>
 </div>
- 
+ </div>
  
  
  );

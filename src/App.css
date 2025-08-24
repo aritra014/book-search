@@ -25,14 +25,40 @@ body {
   padding: 10px;
 }
 
+.footer-card {
+  background-color: #f8f9fa; /* Bootstrap light background */
+  height:42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  font-size: 0.75rem; /* smaller text */
+  color: #4a4a4a;     /* Bootstrap muted text */
+  margin: 0;
+}
 
 
+.pagination .page-link {
+  background-color: transparent !important;
+  border: none; /* optional: remove borders for a cleaner look */
+}
 
+.pagination .page-item.active .page-link {
+  background-color: #0d6efd !important; /* keep active page visible */
+  color: white !important;
 
+}
+
+.pagination .page-item.active .sr-only {
+  display: none;
+}
 
 .App-header {
   background-color: hsl(219, 8%, 34%);
-  padding: 30px 60px 30px 60px;
+  padding: 15px ;
+  padding-bottom: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
